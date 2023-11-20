@@ -2,32 +2,36 @@ package tests;
 
 import driver.BaseTest;
 import org.junit.jupiter.api.Test;
-import page.GitHubPage;
+import page.MainPage;
+import page.RepositoryPage;
+import page.SearchResultPage;
 
+import static data.Data.*;
 import static io.qameta.allure.Allure.step;
-import static page.GitHubPage.*;
 
 public class LambdaWithStepTest extends BaseTest {
 
-    GitHubPage gitHubPage = new GitHubPage();
+    MainPage mainPage = new MainPage();
+    SearchResultPage searchResultPage = new SearchResultPage();
+    RepositoryPage repositoryPage = new RepositoryPage();
 
     @Test
     void lambdaWithStepTest() {
 
         step("Открыть главную страницу", () -> {
-            gitHubPage.openPage(BASE_URL);
+            mainPage.openPage(BASE_URL);
         });
         step("Найти репозиторий" + "<" + REPO + ">", () -> {
-            gitHubPage.searchRepo(REPO);
+            mainPage.searchRepo(REPO);
         });
         step("Открыть репозиторий" + "<" + REPO + ">", () -> {
-            gitHubPage.clickResultSearch(REPO);
+            searchResultPage.clickResultSearch(REPO);
         });
         step("Открыть Issues", () -> {
-            gitHubPage.clickIssueTab();
+            repositoryPage.clickIssueTab();
         });
         step("Проверить что в Issue содержиться текст" + "<" + ISSUE + ">", () -> {
-            gitHubPage.checkIssueName(ISSUE);
+            repositoryPage.checkIssueName(ISSUE);
         });
     }
 }

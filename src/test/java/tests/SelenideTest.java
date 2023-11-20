@@ -1,22 +1,25 @@
 package tests;
 
-
 import driver.BaseTest;
 import org.junit.jupiter.api.Test;
-import page.GitHubPage;
+import page.MainPage;
+import page.RepositoryPage;
+import page.SearchResultPage;
 
-import static page.GitHubPage.*;
-
+import static data.Data.*;
 public class SelenideTest extends BaseTest {
-
-    GitHubPage gitHubPage = new GitHubPage();
+    MainPage mainPage = new MainPage();
+    SearchResultPage searchResultPage = new SearchResultPage();
+    RepositoryPage repositoryPage = new RepositoryPage();
 
     @Test
     void selenideTest() {
-        gitHubPage.openPage(BASE_URL)
-                .searchRepo(REPO)
-                .clickResultSearch(REPO)
-                .clickIssueTab()
+        mainPage.openPage(BASE_URL)
+                .searchRepo(REPO);
+
+        searchResultPage.clickResultSearch(REPO);
+
+        repositoryPage.clickIssueTab()
                 .checkIssueName(ISSUE);
     }
 

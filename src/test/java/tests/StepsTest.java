@@ -10,7 +10,6 @@ import steps.Steps;
 
 public class StepsTest extends BaseTest {
 
-
     @Test
     void stepsTest() {
         Steps step = new Steps();

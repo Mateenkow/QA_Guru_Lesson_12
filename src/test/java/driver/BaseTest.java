@@ -17,12 +17,6 @@ abstract public class BaseTest {
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
 
-    @AfterEach
-    void clear() {
-        Selenide.clearBrowserCookies();
-        Selenide.clearBrowserLocalStorage();
-    }
-
     @BeforeAll
     public static void setUp() {
         Configuration.browserSize = System.getProperty("windowSize", "1920x1080");
@@ -34,6 +28,11 @@ abstract public class BaseTest {
     public static void tearDown() {
         Selenide.closeWindow();
         Selenide.closeWebDriver();
+    }
+    @AfterEach
+    void clear() {
+        Selenide.clearBrowserCookies();
+        Selenide.clearBrowserLocalStorage();
     }
 
 }

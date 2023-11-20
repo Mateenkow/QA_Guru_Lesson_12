@@ -2,41 +2,45 @@ package steps;
 
 import driver.BaseTest;
 import io.qameta.allure.Step;
-import page.GitHubPage;
+import page.MainPage;
+import page.RepositoryPage;
+import page.SearchResultPage;
 
-import static page.GitHubPage.*;
+import static data.Data.*;
 
 /**
  * @author mateenkov
  */
 
-public class Steps extends BaseTest {
+public class Steps {
 
-    GitHubPage gitHubPage = new GitHubPage();
+    MainPage mainPage = new MainPage();
+    SearchResultPage searchResultPage = new SearchResultPage();
+    RepositoryPage repositoryPage = new RepositoryPage();
 
     @Step("Открыть страницу")
     public void openPage() {
-        gitHubPage.openPage(BASE_URL);
+        mainPage.openPage(BASE_URL);
     }
 
     @Step("Найти репозиторий" + REPO)
     public void searchRepo() {
-        gitHubPage.searchRepo(REPO);
+        mainPage.searchRepo(REPO);
     }
 
     @Step("Открыть репозиторий" + REPO)
     public void openRepo() {
-        gitHubPage.clickResultSearch(REPO);
+        searchResultPage.clickResultSearch(REPO);
     }
 
     @Step("Открыть ISSUE")
     public void openIssue() {
-        gitHubPage.clickIssueTab();
+        repositoryPage.clickIssueTab();
     }
 
     @Step("Проверить в ISSUE наличие текста" + ISSUE)
     public void checkIssue() {
-        gitHubPage.checkIssueName(ISSUE);
+        repositoryPage.checkIssueName(ISSUE);
     }
 
 }
